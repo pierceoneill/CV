@@ -29,7 +29,7 @@ SECRET_KEY = '27$d=gvu&4b+qkw6!zf@k$fkc&ls70-hms3j-b+9*3a@b1a1&t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', os.environ.get('C9_HOSTNAME'), 'pierceoneill-cv.herokuapp.com', 'pierceoneill.ie',
+ALLOWED_HOSTS = ['127.0.0.1', os.environ.get('C9_HOSTNAME'), 'pierceoneill-cv-bd26384b6669.herokuapp.com', 'pierceoneill.ie',
     ]
 
 
