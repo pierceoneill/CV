@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.conf.urls import url
+from django.urls import re_path as url
+from django.urls import include, path
 from django.views.generic import RedirectView
 from . import views
 
