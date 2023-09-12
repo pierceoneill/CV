@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="main-wrapper home-two">
+            <div class="container">
+                <div id="navigation" class="menu-two">
+                     <div class="navbar">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button> 
+                             <div class="navbar-brand logo">
+                                <a href="{% url 'index' %}"><img class="img-responsive" src="{% static 'img/logotop.png' %}" alt="Image" ></a> 
+                            </div> 
+                        </div>    
+                        <div class="collapse navbar-collapse">
+                            <nav id="mainmenu">
+                                <ul class="nav navbar-nav"> 
+                                    <li class=" dropdown">
+                                        <a href="{% url 'index' %}">Home</a>
+                                        
+                                    </li>
+                                    <li><a href="{% url 'index' %}">About Me</a></li>
+                                     <li><a href="{% url 'index' %}">Skills</a></li>
+                                     <li><a href="{% url 'index' %}">Experience</a></li>
+                                     <li><a href="{% url 'index' %}">Education</a></li>
+                                     <li><a href="{% url 'index' %}">Portfolio</a></li>
+                                     <li><a href="{% url 'index' %}">Contact</a></li>
+                                     <li class="current"><a href="#blog">Blog</a></li>   
+                                </ul>
+                            </nav>
+                        </div>  
+                    </div><!-- navbar -->                                 
+                </div><!-- navigation -->                     
+            </div><!-- container -->          
+ <body>
+       <section class="page_breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 text-center">
+                        <h3>Blog</h3>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <a href="{% url 'post_list' %}">
+                                    Blog
+                                </a>
+                            </li>
+                            
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+           
+
+            <div id="blog" class="blog-section section-padding">
+                <div class="container">
+                    
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="row">
+                                {% for post in post_list%}
+                                <div class="col-sm-6">
+                                    <div class="entry-post">
+                                        <div class="entry-thumbnail">
+                                            <div class="thumbnail-oberlay"></div>
+                                            <img class="img-responsive" src="{{ post.image.url }}" alt="Image">
+                                        </div>
+                                        <div class="post-content">
+                                            <div class="time">
+                                                <a href="#">{{ post.published_date|date:"d"}}<span>{{ post.published_date|date:"M"}}</span></a>
+                                            </div>
+                                            <div class="entry-title">
+                                               <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                                           </div> 
+                                        </div> 
+                                    </div>                        
+                                </div>
+                                {% endfor %} 
+                            </div><!-- row -->      
+                        </div>
+                        
+                        <div id="sidebar" class="col-sm-4">
+                            <aside id="sidebar" class="widget-area">
+                                <div class="widget widget_search">
+                                    <form role="search" id="search-form" method="get" action="#">
+                                        <input type="search" class="form-control" autocomplete="off" name="s" placeholder="Search..." id="search-input" value="">
+                                        <button type="submit" id="search-submit" class="btn"><i class="fa fa-search"></i></button>
+                                    </form>
+                                </div>
+                                <div class="widget widget_text">
+                                    <h3 class="widget_title">Widget Title</h3>            
+                                    <div class="textwidget">
+                                        <img class="img-responsive" src="{% static 'img/blog/5.jpg' %}" alt="">
+                                    </div>
+                                </div>
+
+                                <div class="widget widget_categories">
+                                    <h3 class="widget_title">Categories</h3>   
+                                    <ul>
+                                         {% for post in post_list%}
+                                        <li><a href="#">{{post.category}}</a></li>
+                                       {% endfor %} 
+                                    </ul>
+                                </div>
+                                 <div class="widget widget_categories">
+                                    <h3 class="widget_title">Tag Clouds</h3>    
+                                    {% for post in post_list%}
+                                    <a href="#">{{post.tag}}</a>
+                                    {% endfor %} 
+                                </div>
+                            </aside><!-- #secondary -->
+                        </div><!-- sidebar -->
+                    </div>
+                </div><!-- container -->
+            </div><!-- blog section -->
+</body>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+{% endblock %}
